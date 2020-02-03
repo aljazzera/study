@@ -58,15 +58,19 @@ let appData = {
         }
     },
     asking: function(){
-        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
+        do{
+            let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
             appData.addExpenses = addExpenses.toLowerCase().split(', ');
+        }
+        while(isNumber(this.addExpenses));
+       
             appData.deposit = confirm('Есть ли у вас депозит в банке?');
         
         for (let i = 0; i < 2; i++) {
             let questionExpenses = prompt('Введите обязательную статью расходов?');
             
             do{
-                sumExpenses = +prompt('Во сколько это обойдется?');
+                sumExpenses = prompt('Во сколько это обойдется?');
             }    
             while (!isNumber(sumExpenses));
              appData.expenses[questionExpenses] = sumExpenses;
