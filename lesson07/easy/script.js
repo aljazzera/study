@@ -73,8 +73,9 @@ let appData = {
                 sumExpenses = prompt('Во сколько это обойдется?');
             }    
             while (!isNumber(sumExpenses));
-             appData.expenses[questionExpenses] = sumExpenses;
+             appData.expenses[questionExpenses] = Number(sumExpenses);        
              console.log(appData.expenses);
+
             };
             
     }
