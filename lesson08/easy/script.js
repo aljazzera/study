@@ -54,18 +54,6 @@ let appData = {
         }
         while(isNumber(addExpenses) || addExpenses <= null || addExpenses.trim() === '');
         
-            appData.addExpenses = addExpenses.toLowerCase().split(', ');
-            appData.firstLetterCaps = function () {
-            let res = [];
-            for (let i = 0; i < appData.addExpenses.length; i++) {
-                let word = appData.addExpenses[i];
-                res += `${word.charAt(0).toUpperCase() + word.slice(1)}, `;
-            }
-            return res;
-            };
-            appData.strExpenses = appData.firstLetterCaps().trim().split(', ');
-            appData.addExpenses = appData.strExpenses.join(', ');
-            console.log('Возможные расходы: ' + appData.addExpenses.substring(0, appData.addExpenses.length - 1));
             appData.deposit = confirm('Есть ли у вас депозит в банке?');
         
         for (let i = 0; i < 2; i++) {
@@ -133,12 +121,12 @@ let expenses = [];
     
 appData.asking(),
 appData.getExpensesMonth(),
-appData.firstLetterCaps(),
 appData.getBudget(),
 appData.getTargetMonth(),
 appData.getStatusIncome();
 appData.getInfoDeposit();
 appData.calcSavedMoney();
+
 
 console.log("Бюджет на день:", appData.budgetDay);
 console.log("Расходы за месяц: " + appData.expensesMonth);
@@ -146,3 +134,12 @@ console.log("Расходы за месяц: " + appData.expensesMonth);
 for (let key in appData) {
     console.log('Наша программа включает в себя данные:' + key + ': ' + appData[key]);
   }
+
+const getExpenses = function () {
+    const arr = appData.addExpenses.map(function (item) {
+        return item.charAt().toUpperCase() + item.slice([1]);
+    });
+    console.log('arr: ', arr.join(', '));
+}
+
+getExpenses();
