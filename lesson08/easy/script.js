@@ -30,7 +30,7 @@ let appData = {
     income: {},
     addIncome: {},
     expenses: {},
-    addExpenses: {},
+    addExpenses: [],
     deposit: false,
     percentDeposit: 0,
     moneyDeposit: 0,
@@ -51,6 +51,7 @@ let appData = {
         }        
         do{
             addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
+            appData.addExpenses = addExpenses.toLowerCase().split(', ');
         }
         while(isNumber(addExpenses) || addExpenses <= null || addExpenses.trim() === '');
         
@@ -119,10 +120,10 @@ let appData = {
 
 let expenses = [];
     
-appData.asking(),
-appData.getExpensesMonth(),
-appData.getBudget(),
-appData.getTargetMonth(),
+appData.asking();
+appData.getExpensesMonth();
+appData.getBudget();
+appData.getTargetMonth();
 appData.getStatusIncome();
 appData.getInfoDeposit();
 appData.calcSavedMoney();
@@ -139,7 +140,7 @@ const getExpenses = function () {
     const arr = appData.addExpenses.map(function (item) {
         return item.charAt().toUpperCase() + item.slice([1]);
     });
-    console.log('arr: ', arr.join(', '));
+    console.log('Возможные расходы: ', arr.join(', '));
 }
 
 getExpenses();
