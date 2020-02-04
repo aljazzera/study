@@ -90,7 +90,7 @@ let appData = {
           } 
     },
     getBudget: function() {
-        appData.budgetDay = Math.floor((appData.budget - appData.expensesMonth) / 30);
+        appData.budgetDay = Number(Math.floor((appData.budget - appData.expensesMonth) / 30));
         appData.budgetMonth = appData.budgetDay * 30;  
     },
     getTargetMonth: function () {
@@ -130,7 +130,7 @@ appData.calcSavedMoney();
 
 
 console.log("Бюджет на день:", appData.budgetDay);
-console.log("Расходы за месяц: " + appData.expensesMonth);
+console.log("Расходы за месяц: ", appData.expensesMonth);
 
 for (let key in appData) {
     console.log('Наша программа включает в себя данные:' + key + ': ' + appData[key]);
@@ -142,5 +142,6 @@ const getExpenses = function () {
     });
     console.log('Возможные расходы: ', arr.join(', '));
 }
+appData.addExpenses = getExpenses();
 
-getExpenses();
+
