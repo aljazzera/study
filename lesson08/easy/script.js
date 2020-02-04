@@ -10,6 +10,7 @@ cashIncome,
 itemIncome,
 questionExpenses,
 separateWords,
+addExpenses,
 
 
 start = function() {
@@ -41,15 +42,18 @@ let appData = {
             do{
                 itemIncome = prompt('Какой у вас дополнительный заработок?');  
             }
-            while(isNumber(itemIncome));
+            while(isNumber(itemIncome) || itemIncome <= null || itemIncome.trim() === '');
             do {
                 cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?');
             } 
             while (!isNumber(cashIncome));
             appData.income[itemIncome] = cashIncome;
+        }        
+        do{
+            addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
         }
-
-        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
+        while(isNumber(addExpenses) || addExpenses <= null || addExpenses.trim() === '');
+        
             appData.addExpenses = addExpenses.toLowerCase().split(', ');
             appData.firstLetterCaps = function () {
             let res = [];
@@ -68,13 +72,13 @@ let appData = {
             do{
                 questionExpenses = prompt('Введите обязательную статью расходов?');
             }
-            while(isNumber(questionExpenses));
+            while(isNumber(questionExpenses) || questionExpenses <= null || questionExpenses.trim() === '');
             
             do{
-                sumExpenses = +prompt('Во сколько это обойдется?');
+                sumExpenses = prompt('Во сколько это обойдется?');
             }    
             while (!isNumber(sumExpenses));
-             appData.expenses[questionExpenses] = sumExpenses;
+             appData.expenses[questionExpenses] = Number(sumExpenses);
              console.log(appData.expenses);
             };
             
