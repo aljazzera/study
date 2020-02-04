@@ -18,6 +18,7 @@ const buttonStart = document.getElementById('start'),
     target = document.querySelector('.target-amount'),
     period = document.querySelector('.period-select'),
     periodAmount = document.querySelector('.period-amount'),
+    depositCheck = document.querySelector('#deposit-check'),
     depositAmount = document.querySelector('.deposit-amount'),
     depositBank = document.querySelector('.deposit-bank'),
     depositPercent = document.querySelector('.deposit-percent');
