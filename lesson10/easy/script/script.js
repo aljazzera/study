@@ -2,8 +2,6 @@
 
 let book = document.querySelectorAll('.book');
 let asideBooks = document.querySelector('.books');
-console.log(book);
-console.log(asideBooks);
 asideBooks.insertBefore(book[1],book[0]);
 asideBooks.insertBefore(book[5],book[3]);
 asideBooks.insertBefore(book[4],book[2]);
@@ -11,13 +9,6 @@ asideBooks.insertBefore(book[3],book[2]);
 asideBooks.insertBefore(book[5],book[2]);
 
 let changeBackground = document.querySelector ('body').setAttribute('style', 'background-image: url(./image/you-dont-know-js.jpg)');
-console.log(book[0]);
-console.log(book[1]);
-console.log(book[2]);
-console.log(book[3]);
-console.log(book[4]);
-console.log(book[5]);
-
 book[4].querySelector('a').innerText = 'Книга 3. this и Прототипы Объектов';
 
 document.querySelector('.adv').remove();
