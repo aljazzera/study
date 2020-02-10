@@ -174,11 +174,11 @@ let appData = {
   },
   blockInput: function () {
     dataInput.forEach(function (item) {
-      item.readOnly = true;
+        item.readOnly = true;
     });
   },
   cancel: function() {
-    appData.reset();
+    this.reset();
   },
   reset: function() {
     allInputs.forEach(function (item) {
