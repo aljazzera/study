@@ -174,6 +174,7 @@ class AppData{
     plusButtonsTwo.style.display = 'block';
     plusButtonsOne.style.display = 'block';
     depositCheck.checked = false;
+    depositPercent.style.display = 'none';
     this.depositHandler();
 
     this.income = {};
@@ -199,7 +200,9 @@ class AppData{
   changePercent(){
     if (this.value === 'other'){
       depositPercent.style.display = 'inline-block';
+      depositPercent.disabled = false;
       depositPercentCurrent = depositPercent;
+      
     }else{
       depositPercentCurrent = this;
       depositPercent.style.display = 'none';
@@ -215,6 +218,7 @@ class AppData{
     }else{
       depositBank.style.display = 'none';
       depositAmount.style.display = 'none';
+      depositPercent.style.display = 'none';
       depositBank.value = '';
       depositAmount.value = '';
       this.deposit = false;
