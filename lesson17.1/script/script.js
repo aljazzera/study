@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', function () {
 
-    function pageTimer() {
+    function Timer() {
         let timeDay = document.querySelector('#time-day'),
             timeWeek = document.querySelector('#time-week'),
             timeCurrent = document.querySelector('#time-current'),
@@ -43,6 +43,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
     }
 
-    pageTimer();
+    Timer();
 
 });
