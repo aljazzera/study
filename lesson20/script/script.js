@@ -184,11 +184,17 @@ window.addEventListener('DOMContentLoaded', function(){
         li;
 
         // Add Dots
-        slide.forEach((item) => {
-            li = document.createElement('li');
-            li.className = 'dot';
-            portfolioDots.appendChild(li);
-        });
+        const addSliderDots = () => {
+            for (let i = 0; i < slide.length; i++) {
+              let newDot = document.createElement('li');
+              newDot.className = 'dot';
+              portfolioDots.append(newDot);
+              if (i === 0) {
+                newDot.classList.add('dot-active');
+              }
+            }
+        };
+        addSliderDots();
 
         const dot = document.querySelectorAll('.dot');
         //  / Add Dots
