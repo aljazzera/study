@@ -281,7 +281,7 @@ window.addEventListener('DOMContentLoaded', function(){
     slider();
 
     //  /SLIDER
-    /***************TEAM PHOTO*************************/
+    //  OUR TEAM
     const photos = () => {
         console.log('111');
         let commandPhoto = document.querySelectorAll('.command__photo');
@@ -302,8 +302,9 @@ window.addEventListener('DOMContentLoaded', function(){
         });
     };
     photos();
+    //  / OUR TEAM
 
-    /***************CALCULATE*****************************/
+    // CALCULATE
     const validationCalc = () => {
         const calcItem = document.querySelectorAll('.calc-item'),
             calcBlock = document.querySelector('.calc-block');
@@ -315,5 +316,6 @@ window.addEventListener('DOMContentLoaded', function(){
         });
     };
     validationCalc();
+    // / CALCULATE
 });
 
