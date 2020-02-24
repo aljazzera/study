@@ -283,7 +283,6 @@ window.addEventListener('DOMContentLoaded', function(){
     //  /SLIDER
     //  OUR TEAM
     const photos = () => {
-        console.log('111');
         let commandPhoto = document.querySelectorAll('.command__photo');
 
         commandPhoto.forEach((item) => {
