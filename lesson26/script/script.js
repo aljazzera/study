@@ -44,7 +44,7 @@ window.addEventListener('DOMContentLoaded', function(){
         updateClock();       
     };
 
-    setInterval(countTimer, 1000, '20 february 2020');
+    setInterval(countTimer, 1000, '10 march 2020');
 
     // MENU
     const toggleMenu = () => {
@@ -366,74 +366,6 @@ window.addEventListener('DOMContentLoaded', function(){
     calc(100);
 
     // / CALCULATE
-    // VALIDATOR
-    const form1 = new Validator({
-        selector: '#form1',
-        pattern: {},
-        method: {
-            'form1-name': [
-                ['notEmpty'],
-                ['pattern', 'name']
-            ],
-            'form1-phone': [
-                ['notEmpty'],
-                ['pattern', 'phone']
-            ],
-            'form1-email': [
-                ['notEmpty'],
-                ['pattern', 'email']
-            ]
-        }
-    });
-
-    const form2 = new Validator({
-        selector: '#form2',
-        pattern: {},
-        method: {
-            'form2-name': [
-                ['notEmpty'],
-                ['pattern', 'name']
-            ],
-            'form2-phone': [
-                ['notEmpty'],
-                ['pattern', 'phone']
-            ],
-            'form2-email': [
-                ['notEmpty'],
-                ['pattern', 'email']
-            ],
-            'form2-message': [
-                ['notEmpty'],
-                ['pattern', 'message']
-            ]
-        }
-    });
-
-    const form3 = new Validator({
-        selector: '#form3',
-        pattern: {},
-        method: {
-            'form3-name': [
-                ['notEmpty'],
-                ['pattern', 'name']
-            ],
-            'form3-phone': [
-                ['notEmpty'],
-                ['pattern', 'phone']
-            ],
-            'form3-email': [
-                ['notEmpty'],
-                ['pattern', 'email']
-            ]
-        }
-    });
-
-    form1.init();
-    form2.init();
-    form3.init();
-
-
-    // VALIDATOR END
 
     //  send-ajax-form
 
@@ -497,7 +429,7 @@ window.addEventListener('DOMContentLoaded', function(){
                 body: JSON.stringify(body)
             });
 
-        }
+        };
     };
     sendForm();
     // / send-ajax-form
