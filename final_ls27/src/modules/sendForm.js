@@ -1,78 +1,88 @@
 'use strict'
 
 const sendForm = () => {
-  const errorMessage = 'Что-то пошло не так',
-        successMessage = `Мы скоро с <span style='color: red'>Вами</span> свяжемся!`,
-        statusMessageContainer = document.createElement('div'),
-        statusMessage = document.createElement('div');
   
-  const removeMessage = () => {
-          statusMessage.textContent = '';
-          statusMessageContainer.remove();
+  const errorMessage = "Ошибка отправки формы",
+    loadMessage = 'Загрузка...',
+    successMessage = 'Спасибо, мы скоро с Вами свяжемся!';
+  
+  const form1 = document.getElementById('form1'),
+    form2 = document.getElementById('form2'),
+    form3 = document.getElementById('form3'),
+    input = document.querySelectorAll('input'),
+    name1 = document.getElementById('form1-name'),
+    phone1 = document.getElementById('form1-phone'),
+    name2 = document.getElementById('form2-name'),
+    phone2 = document.getElementById('form2-phone'),
+    message = document.getElementById('form2-message'),
+    name3 = document.getElementById('form3-name'),
+    phone3 = document.getElementById('form3-phone');
+  
+  const statusMessage = document.createElement('div');
+  statusMessage.style.cssText = `font-size: 2rem; color: #19b5fe;`;
+  
+  const post = (selectForm) => {
+    
+    selectForm.appendChild(statusMessage);
+    statusMessage.textContent = loadMessage;
+    
+    const formData = new FormData(selectForm);
+    let body = {};
+    for(let val of formData.entries()){
+      body[val[0]] = val[1];
+    }
+    postData(body)
+    .then ((response) => {
+      if (response.status !== 200){
+        input.forEach((item) => {item.value = '';});
+        throw new Error ('status network not 200');
+        
+      }
+      input.forEach((item) => {item.value = '';});
+      statusMessage.textContent = successMessage;
+    })
+    .catch ((error) => {
+      statusMessage.textContent = errorMessage;
+      console.error(error);
+    });
   };
   
-  statusMessageContainer.classList.add('loader-container');
-  statusMessageContainer.appendChild(statusMessage);
-
-  document.body.addEventListener('input', (evt) => {
-      if(evt.target.matches('.form-name, #form2-name, .mess')) {
-          evt.target.value = evt.target.value.replace(/[^а-я ]/gi, '');
-      }
-
-      if(evt.target.matches('.form-phone')) {
-          evt.target.value = evt.target.value.replace(/[^0-9+]/gi, '');
-      }
+  //*подключение к форме в header*/
+  form1.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (name1.classList.contains('error') || phone1.classList.contains('error')){
+      return false;
+    } else
+      post(form1);
   });
-
-  document.body.addEventListener('submit', (evt) => {
-      let target;
-
-      if(evt.target.tagName === 'FORM') {
-          evt.preventDefault();
-          target = evt.target;
-
-          const   elementsForm = [...target.elements].filter(item => item.tagName !== 'BUTTON'), 
-                  formData = new FormData(target);
-
-          let body = {};
   
-          target.appendChild(statusMessageContainer);
-          statusMessage.classList.add('loader');
-          formData.forEach((val, key) => {body[key] = val;});
-          elementsForm.forEach((input) => {input.value = '';});
-          
-          postDate(body)
-              .then((response) => {
-                  if(response.status !== 200) {
-                      throw new Error('status network not 200');
-                  }
-                  statusMessage.classList.remove('loader');
-                  statusMessage.classList.add('resultMessage');
-                  statusMessage.innerHTML = successMessage;
-              }) 
-              .catch((error) => {
-                  statusMessage.classList.remove('loader');
-                  statusMessage.classList.add('resultMessage');
-                  statusMessage.textContent = errorMessage;
-                  console.log(error);
-              });
-          
-          setTimeout(removeMessage, 4000);
-          
-      }
+  /*подключение к форме в footer*/
+  form2.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (name2.classList.contains('error') || phone2.classList.contains('error') || message.classList.contains('error')){
+      return false;
+    } else
+      post(form2);
   });
-
-
-  const postDate = (body) => {
-      return fetch('./server.php', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(body)
-      });
+  
+  /*подключение к модальному окну*/
+  form3.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (name3.classList.contains('error') || phone3.classList.contains('error')){
+      return false;
+    } else
+      post(form3);
+  });
+  
+  const postData = (body) => {
+    return fetch('./server.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
   };
 };
-
 
 export default sendForm;
